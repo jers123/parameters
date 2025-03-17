@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>Edit gender</h2>
+<mat-dialog-content>
+    <mat-form-field appearance="fill">
+        <mat-label>Id</mat-label>
+        <input matInput disabled="true" placeholder="Gender id" [(ngModel)]="genderOutput.idGender">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Gender name" [(ngModel)]="genderOutput.genderName">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <mat-select [value]="genderOutput.status" [(ngModel)]="genderOutput.status">
+            <mat-option value="true">True</mat-option>
+            <mat-option value="false">False</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Creation date</mat-label>
+        <input matInput disabled="true" placeholder="Gender creation date" [(ngModel)]="genderOutput.creationDate">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Update date</mat-label>
+        <input matInput disabled="true" placeholder="Gender update date" [(ngModel)]="genderOutput.updateDate">
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button cdkFocusInitial (click)="openDialogEdit()">Update</button>
+    <button mat-button (click)="onClose(false)">Cancel</button>
+</mat-dialog-actions>

@@ -1,0 +1,705 @@
+@startuml
+
+annotation org.jers.parameters.annotation.RestApi {
++ @RestController
++ @CrossOrigin
++ @Target(ElementType.TYPE)
++ @Retention(RetentionPolicy.RUNTIME)
+}
+
+
+class org.jers.parameters.ParametersApplication {
++ {static} main(args: String[]) : void
+}
+
+class org.jers.parameters.utils.response.ReplyMessageSimple<BO extends BaseEntityOutputDTO> {
+- response : BO
+}
+
+class org.jers.parameters.utils.SystemConstants {
+# {static} {final} API_KEY_VALUE :String
++ {static} LOCAL_ORIGIN_PATH : String
++ {static} PUBLIC_ORIGIN_PATH : String
++ {static} LOCAL_ORIGIN_PATH2 : String
++ {static} PUBLIC_ORIGIN_PATH2 : String
++ {static} PRIVATE_PC_ORIGIN_PATH : String
++ {static} PUBLIC_PC_ORIGIN_PATH : String
++ {static} PARAMETERS_PATH : String
++ {static} CREATE_PATH : String
++ {static} DELETE_PATH : String
++ {static} GET_ALL_ACRONYM_PATH : String
++ {static} GET_ALL_PATH : String
++ {static} GET_ID_PATH : String
++ {static} GET_STATUS_PATH : String
++ {static} GET_STATUS_ACRONYM_PATH : String
++ {static} UPDATE_PATH : String
++ {static} ACCEPT : String
++ {static} AUTHORIZATION : String
++ {static} CONTENT_TYPE : String
++ {static} LOCATION : String
++ {static} X_API_KEY : String
++ {static} CIVIL_STATUS_PATH : String
++ {static} DOCUMENT_TYPE_PATH : String
++ {static} GENDER_PATH : String
++ {static} SECTOR_PATH : String
++ {static} TELEPHONE_TYPE_PATH : String
++ {static} DATABASE : String
++ {static} SCHEMA : String
++ {static} ACRONYM : String
++ {static} CREATION_DATE : String
++ {static} ID : String
++ {static} NAME : String
++ {static} STATUS : String
++ {static} UPDATE_DATE : String
++ {static} CIVIL_STATUS_TABLE: String
++ {static} CIVIL_STATUS_NAME_LENGTH : int
++ {static} CIVIL_STATUS_ALL_QUERY : String
++ {static} CIVIL_STATUS_ALL_STATUS_QUERY : String
++ {static} CIVIL_STATUS_NAME_QUERY : String
++ {static} DOCUMENT_TYPE_TABLE : String
++ {static} DOCUMENT_TYPE_NAME_LENGTH : int
++ {static} DOCUMENT_TYPE_ACRONYM_LENGTH : int
++ {static} DOCUMENT_TYPE_ACRONYM_QUERY : String
++ {static} DOCUMENT_TYPE_ALL_QUERY_ACRONYM : String
++ {static} DOCUMENT_TYPE_ALL_QUERY_NAME : String
++ {static} DOCUMENT_TYPE_ALL_STATUS_ACRONYM_QUERY : String
++ {static} DOCUMENT_TYPE_ALL_STATUS_NAME_QUERY : String
++ {static} DOCUMENT_TYPE_NAME_QUERY : String
++ {static} GENDER_TABLE : String
++ {static} GENDER_NAME_LENGTH : int
++ {static} GENDER_ALL_QUERY : String
++ {static} GENDER_ALL_STATUS_QUERY : String
++ {static} GENDER_NAME_QUERY : String
++ {static} SECTOR_TABLE : String
++ {static} SECTOR_NAME_LENGTH:int
++ {static} SECTOR_ALL_QUERY : String
++ {static} SECTOR_ALL_STATUS_QUERY : String
++ {static} SECTOR_NAME_QUERY : String
++ {static} TELEPHONE_TYPE_TABLE : String
++ {static} TELEPHONE_TYPE_NAME_LENGTH : int
++ {static} TELEPHONE_TYPE_ALL_QUERY : String
++ {static} TELEPHONE_TYPE_ALL_STATUS_QUERY : String
++ {static} TELEPHONE_TYPE_NAME_QUERY : String
++ {static} answerSimple(replyMessage: ReplyMessageSimple) : ResponseEntity<ReplyMessageSimple>
++ {readOnly} {static} answerList(replyMessage : ReplyMessageList) : ResponseEntity<ReplyMessageList>
+}
+
+class org.jers.parameters.utils.Constants {
++ {static} ID_VALUE_MINIMUM : String
++ {static} NO_CONTENT : String
++ {static} NO_CONTENT_ID : String
++ {static} YES_CONTENT : String
++ {static} HTTP_MESSAGE1 : String
++ {static} HTTP_MESSAGE2 : String
++ {static} CIVIL_STATUS_NAME_EXISTS : String
++ {static} CIVIL_STATUS_NAME_NOT_BLANK : String
++ {static} CIVIL_STATUS_NAME_NOT_NULL : String
++ {static} CIVIL_STATUS_NAME_SIZE : String
++ {static} SUCCESSFULLY_CREATED_CIVIL_STATUS : String
++ {static} SUCCESSFULLY_DELETED_CIVIL_STATUS : String
++ {static} SUCCESSFULLY_UPDATED_CIVIL_STATUS : String
++ {static} DOCUMENT_TYPE_ACRONYM_EXISTS : String
++ {static} DOCUMENT_TYPE_ACRONYM_NOT_BLANK : String
++ {static} DOCUMENT_TYPE_ACRONYM_NOT_NULL : String
++ {static} DOCUMENT_TYPE_ACRONYM_SIZE : String
++ {static} DOCUMENT_TYPE_NAME_EXISTS : String
++ {static} DOCUMENT_TYPE_NAME_NOT_BLANK : String
++ {static} DOCUMENT_TYPE_NAME_NOT_NULL : String
++ {static} DOCUMENT_TYPE_NAME_SIZE : String
++ {static} SUCCESSFULLY_CREATED_DOCUMENT_TYPE : String
++ {static} SUCCESSFULLY_DELETED_DOCUMENT_TYPE : String
++ {static} SUCCESSFULLY_UPDATED_DOCUMENT_TYPE : String
++ {static} GENDER_NAME_EXISTS : String
++ {static} GENDER_NAME_NOT_BLANK : String
++ {static} GENDER_NAME_NOT_NULL : String
++ {static} GENDER_NAME_SIZE : String
++ {static} SUCCESSFULLY_CREATED_GENRE : String
++ {static} SUCCESSFULLY_DELETED_GENRE : String
++ {static} SUCCESSFULLY_UPDATED_GENRE : String
++ {static} SECTOR_NAME_EXISTS : String
++ {static} SECTOR_NAME_NOT_BLANK : String
++ {static} SECTOR_NAME_NOT_NULL : String
++ {static} SECTOR_NAME_SIZE : String
++ {static} SUCCESSFULLY_CREATED_SECTOR : String
++ {static} SUCCESSFULLY_DELETED_SECTOR : String
++ {static} SUCCESSFULLY_UPDATED_SECTOR : String
++ {static} SUCCESSFULLY_CREATED_TELEPHONE_TYPE : String
++ {static} SUCCESSFULLY_DELETED_TELEPHONE_TYPE : String
++ {static} SUCCESSFULLY_UPDATED_TELEPHONE_TYPE : String
++ {static} TELEPHONE_TYPE_NAME_EXISTS : String
++ {static} TELEPHONE_TYPE_NAME_NOT_BLANK : String
++ {static} TELEPHONE_TYPE_NAME_NOT_NULL : String
++ {static} TELEPHONE_TYPE_NAME_SIZE : String
+}
+
+class org.jers.parameters.config.SecurityConfig {
+- apiKey : String
++ securityFilterChain(http : HttpSecurity) : SecurityFilterChain
+}
+
+class org.jers.parameters.config.SwaggerConfig {
++ GroupedOpenApi publicApi()
++ OpenAPI springShopOpenAPI()
+}
+
+class org.jers.parameters.service.CivilStatusService {
+- ICivilStatusRepository repository
+- ReplyMessageSimple<CivilStatusOutputDTO> replyMessageSimple
+- ReplyMessageList<CivilStatusOutputDTO> replyMessageList
+- IMapper<CivilStatusCreateDTO,CivilStatusUpdateDTO,CivilStatusOutputDTO,CivilStatus> mapper
++ ReplyMessageSimple<CivilStatusOutputDTO> getCreate(CivilStatusCreateDTO)
++ ReplyMessageList<CivilStatusOutputDTO> getFindAll()
++ ReplyMessageList<CivilStatusOutputDTO> getFindAllByStatus(Boolean)
++ ReplyMessageSimple<CivilStatusOutputDTO> getFindById(Integer)
++ ReplyMessageSimple<CivilStatusOutputDTO> getUpdate(CivilStatusUpdateDTO)
++ ReplyMessageSimple<CivilStatusOutputDTO> getDelete(Integer)
++ String getUri(String)
++ String getUri(String,Integer)
+}
+
+abstract class org.jers.parameters.model.dto.BaseEntityInputDTO {
+- Boolean status
+}
+
+abstract class org.jers.parameters.model.dto.BaseEntityOutputDTO {
+- LocalDateTime creationDate
+- LocalDateTime updateDate
+}
+
+class org.jers.parameters.model.dto.citytocity.CityToCityOutputDTO {
+- Integer idCityToCity
+- Integer idOriginCity
+- Integer idDestinationCity
+- Double distance
+- int routeNumbers
+}
+
+class org.jers.parameters.model.dto.civilstatus.CivilStatusCreateDTO {
+- String civilStatusName
+}
+
+class org.jers.parameters.model.dto.civilstatus.CivilStatusOutputDTO {
+- Integer idCivilStatus
+- String civilStatusName
+}
+
+class org.jers.parameters.model.dto.documenttype.DocumentTypeUpdateDTO {
+- Integer idDocumentType
+}
+
+class org.jers.parameters.model.dto.documenttype.DocumentTypeOutputDTO {
+- Integer idDocumentType
+- String documentTypeName
+- String documentTypeAcronym
+}
+
+class org.jers.parameters.model.dto.gender.GenderCreateDTO {
+- String genderName
+}
+
+class org.jers.parameters.model.dto.sector.SectorCreateDTO {
+- String sectorName
+}
+
+class org.jers.parameters.model.dto.sector.SectorOutputDTO {
+- Integer idSector
+- String sectorName
+}
+
+class org.jers.parameters.model.dto.state.StateCreateDTO {
+- String stateName
+- String landlinePhoneIdentifier
+- Integer idCountry
+}
+
+interface org.jers.parameters.model.repository.IGenderRepository {
+~ List<Gender> searchAll()
+~ List<Gender> searchAllStatus(Boolean)
+~ String searchByName(Integer,String)
+}
+
+
+interface org.jers.parameters.utils.mappers.IMapper {
+~ BE create(BEC)
+~ BEO read(BE)
+~ BE update(BEU,BE)
+}
+
+class org.jers.parameters.utils.mappers.DocumentTypeMapper {
++ DocumentType create(DocumentTypeCreateDTO)
++ DocumentTypeOutputDTO read(DocumentType)
++ DocumentType update(DocumentTypeUpdateDTO,DocumentType)
+}
+
+class org.jers.parameters.utils.mappers.GenderMapper {
++ Gender create(GenderCreateDTO)
++ GenderOutputDTO read(Gender)
++ Gender update(GenderUpdateDTO,Gender)
+}
+
+class org.jers.parameters.utils.mappers.TelephoneTypeMapper {
++ TelephoneType create(TelephoneTypeCreateDTO)
++ TelephoneTypeOutputDTO read(TelephoneType)
++ TelephoneType update(TelephoneTypeUpdateDTO,TelephoneType)
+}
+
+
+interface org.jers.parameters.model.repository.ISectorRepository {
+~ List<Sector> searchAll()
+~ List<Sector> searchAllStatus(Boolean)
+~ String searchByName(Integer,String)
+}
+
+interface org.jers.parameters.service.IBaseService {
+~ ReplyMessageSimple<BO> getCreate(BC)
+~ ReplyMessageList<BO> getFindAll()
+~ ReplyMessageList<BO> getFindAllByStatus(Boolean)
+~ ReplyMessageSimple<BO> getFindById(Integer)
+~ ReplyMessageSimple<BO> getUpdate(BU)
+~ ReplyMessageSimple<BO> getDelete(Integer)
+~ String getUri(String)
+~ String getUri(String,Integer)
+}
+
+
+
+class org.jers.parameters.model.entity.Country {
+- Integer idCountry
+- String countryName
+- String phoneIdentifier
+- List<State> states
+}
+
+interface org.jers.parameters.model.repository.IBaseRepository {
+}
+
+
+class org.jers.parameters.model.entity.CityToCity {
+- Integer idCityToCity
+- City idOriginCity
+- City idDestinationCity
+- Double distance
+- int routeNumbers
+}
+
+interface org.jers.parameters.model.repository.IDocumentTypeRepository {
+~ List<DocumentType> searchAll()
+~ List<DocumentType> searchAllByAcronym()
+~ List<DocumentType> searchAllStatus(Boolean)
+~ List<DocumentType> searchAllStatusAcronym(Boolean)
+~ String searchByName(Integer,String)
+~ String searchByAcronym(Integer,String)
+}
+
+class org.jers.parameters.model.dto.telephonetype.TelephoneTypeCreateDTO {
+- String telephoneTypeName
+}
+
+class org.jers.parameters.model.entity.TelephoneType {
+- Integer idTelephoneType
+- String telephoneTypeName
+}
+
+class org.jers.parameters.model.dto.documenttype.DocumentTypeCreateDTO {
+- String documentTypeName
+- String documentTypeAcronym
+}
+
+class org.jers.parameters.model.entity.State {
+- Integer idState
+- String stateName
+- String landlinePhoneIdentifier
+- Country idCountry
+}
+
+class org.jers.parameters.model.entity.DocumentType {
+- Integer idDocumentType
+- String documentTypeName
+- String documentTypeAcronym
+}
+
+interface org.jers.parameters.controller.IDocumentTypeController {
+~ ResponseEntity<ReplyMessageList> getAllAcronym()
+~ ResponseEntity<ReplyMessageList> getByStatusAcronym(Boolean)
+}
+
+class org.jers.parameters.model.dto.country.CountryUpdateDTO {
+- Integer idCountry
+}
+
+class org.jers.parameters.controller.DocumentTypeController {
+- IDocumentTypeService<DocumentTypeOutputDTO> service
++ ResponseEntity<ReplyMessageSimple> create(DocumentTypeCreateDTO)
++ ResponseEntity<ReplyMessageList> getAll()
++ ResponseEntity<ReplyMessageList> getAllAcronym()
++ ResponseEntity<ReplyMessageSimple> getById(Integer)
++ ResponseEntity<ReplyMessageList> getByStatus(Boolean)
++ ResponseEntity<ReplyMessageList> getByStatusAcronym(Boolean)
++ ResponseEntity<ReplyMessageSimple> update(DocumentTypeUpdateDTO)
++ ResponseEntity<ReplyMessageSimple> delete(Integer)
+}
+
+
+class org.jers.parameters.model.entity.Sector {
+- Integer idSector
+- String sectorName
+}
+
+class org.jers.parameters.model.entity.CivilStatus {
+- Integer idCivilStatus
+- String civilStatusName
+}
+
+class org.jers.parameters.service.TelephoneTypeService {
+- ITelephoneTypeRepository repository
+- ReplyMessageSimple<TelephoneTypeOutputDTO> replyMessageSimple
+- ReplyMessageList<TelephoneTypeOutputDTO> replyMessageList
+- IMapper<TelephoneTypeCreateDTO,TelephoneTypeUpdateDTO,TelephoneTypeOutputDTO,TelephoneType> mapper
++ ReplyMessageSimple<TelephoneTypeOutputDTO> getCreate(TelephoneTypeCreateDTO)
++ ReplyMessageList<TelephoneTypeOutputDTO> getFindAll()
++ ReplyMessageList<TelephoneTypeOutputDTO> getFindAllByStatus(Boolean)
++ ReplyMessageSimple<TelephoneTypeOutputDTO> getFindById(Integer)
++ ReplyMessageSimple<TelephoneTypeOutputDTO> getUpdate(TelephoneTypeUpdateDTO)
++ ReplyMessageSimple<TelephoneTypeOutputDTO> getDelete(Integer)
++ String getUri(String)
++ String getUri(String,Integer)
+}
+
+
+interface org.jers.parameters.model.repository.ITelephoneTypeRepository {
+~ List<TelephoneType> searchAll()
+~ List<TelephoneType> searchAllStatus(Boolean)
+~ String searchByName(Integer,String)
+}
+
+class org.jers.parameters.model.dto.state.StateUpdateDTO {
+- Integer idState
+}
+
+class org.jers.parameters.controller.GenderController {
+- IBaseService<GenderCreateDTO,GenderUpdateDTO,GenderOutputDTO> service
++ ResponseEntity<ReplyMessageSimple> create(GenderCreateDTO)
++ ResponseEntity<ReplyMessageList> getAll()
++ ResponseEntity<ReplyMessageSimple> getById(Integer)
++ ResponseEntity<ReplyMessageList> getByStatus(Boolean)
++ ResponseEntity<ReplyMessageSimple> update(GenderUpdateDTO)
++ ResponseEntity<ReplyMessageSimple> delete(Integer)
+}
+
+
+class org.jers.parameters.model.dto.telephonetype.TelephoneTypeUpdateDTO {
+- Integer idTelephoneType
+}
+
+class org.jers.parameters.model.dto.telephonetype.TelephoneTypeOutputDTO {
+- Integer idTelephoneType
+- String telephoneTypeName
+}
+
+class org.jers.parameters.model.dto.sector.SectorUpdateDTO {
+- Integer idSector
+}
+
+class org.jers.parameters.model.dto.civilstatus.CivilStatusUpdateDTO {
+- Integer idCivilStatus
+}
+
+interface org.jers.parameters.controller.IBaseController {
+~ ResponseEntity<ReplyMessageSimple> create(BC)
+~ ResponseEntity<ReplyMessageList> getAll()
+~ ResponseEntity<ReplyMessageSimple> getById(Integer)
+~ ResponseEntity<ReplyMessageList> getByStatus(Boolean)
+~ ResponseEntity<ReplyMessageSimple> update(BU)
+~ ResponseEntity<ReplyMessageSimple> delete(Integer)
+}
+
+abstract class org.jers.parameters.utils.response.ReplyMessage {
+- String uri
+- HttpStatus httpStatus
+- Boolean error
+- List<String> message
+- LocalDateTime date
+}
+
+class org.jers.parameters.controller.TelephoneTypeController {
+- IBaseService<TelephoneTypeCreateDTO,TelephoneTypeUpdateDTO,TelephoneTypeOutputDTO> service
++ ResponseEntity<ReplyMessageSimple> create(TelephoneTypeCreateDTO)
++ ResponseEntity<ReplyMessageList> getAll()
++ ResponseEntity<ReplyMessageSimple> getById(Integer)
++ ResponseEntity<ReplyMessageList> getByStatus(Boolean)
++ ResponseEntity<ReplyMessageSimple> update(TelephoneTypeUpdateDTO)
++ ResponseEntity<ReplyMessageSimple> delete(Integer)
+}
+
+
+interface org.jers.parameters.service.IDocumentTypeService {
+~ ReplyMessageList<BO> getFindAllByAcronym()
+~ ReplyMessageList<BO> getFindAllByStatusAcronym(Boolean)
+}
+
+class org.jers.parameters.controller.CivilStatusController {
+- IBaseService<CivilStatusCreateDTO,CivilStatusUpdateDTO,CivilStatusOutputDTO> service
++ ResponseEntity<ReplyMessageSimple> create(CivilStatusCreateDTO)
++ ResponseEntity<ReplyMessageList> getAll()
++ ResponseEntity<ReplyMessageSimple> getById(Integer)
++ ResponseEntity<ReplyMessageList> getByStatus(Boolean)
++ ResponseEntity<ReplyMessageSimple> update(CivilStatusUpdateDTO)
++ ResponseEntity<ReplyMessageSimple> delete(Integer)
+}
+
+
+class org.jers.parameters.model.dto.city.CityUpdateDTO {
+- Integer idCity
+}
+
+class org.jers.parameters.service.GenderService {
+- IGenderRepository repository
+- ReplyMessageSimple<GenderOutputDTO> replyMessageSimple
+- ReplyMessageList<GenderOutputDTO> replyMessageList
+- IMapper<GenderCreateDTO,GenderUpdateDTO,GenderOutputDTO,Gender> mapper
++ ReplyMessageSimple<GenderOutputDTO> getCreate(GenderCreateDTO)
++ ReplyMessageList<GenderOutputDTO> getFindAll()
++ ReplyMessageList<GenderOutputDTO> getFindAllByStatus(Boolean)
++ ReplyMessageSimple<GenderOutputDTO> getFindById(Integer)
++ ReplyMessageSimple<GenderOutputDTO> getUpdate(GenderUpdateDTO)
++ ReplyMessageSimple<GenderOutputDTO> getDelete(Integer)
++ String getUri(String)
++ String getUri(String,Integer)
+}
+
+
+class org.jers.parameters.model.dto.country.CountryOutputDTO {
+- Integer idCountry
+- String countryName
+- String phoneIdentifier
+}
+
+class org.jers.parameters.model.dto.citytocity.CityToCityUpdateDTO {
+- Integer idCityToCity
+}
+
+abstract class org.jers.parameters.model.entity.BaseEntity {
+- Boolean status
+- LocalDateTime creationDate
+- LocalDateTime updateDate
+}
+
+class org.jers.parameters.utils.mappers.SectorMapper {
++ Sector create(SectorCreateDTO)
++ SectorOutputDTO read(Sector)
++ Sector update(SectorUpdateDTO,Sector)
+}
+
+interface org.jers.parameters.model.repository.ICivilStatusRepository {
+~ List<CivilStatus> searchAll()
+~ List<CivilStatus> searchAllStatus(Boolean)
+~ String searchByName(Integer,String)
+}
+
+class org.jers.parameters.model.dto.gender.GenderOutputDTO {
+- Integer idGender
+- String genderName
+}
+
+class org.jers.parameters.utils.mappers.CivilStatusMapper {
++ CivilStatus create(CivilStatusCreateDTO)
++ CivilStatusOutputDTO read(CivilStatus)
++ CivilStatus update(CivilStatusUpdateDTO,CivilStatus)
+}
+
+class org.jers.parameters.controller.SectorController {
+- IBaseService<SectorCreateDTO,SectorUpdateDTO,SectorOutputDTO> service
++ ResponseEntity<ReplyMessageSimple> create(SectorCreateDTO)
++ ResponseEntity<ReplyMessageList> getAll()
++ ResponseEntity<ReplyMessageSimple> getById(Integer)
++ ResponseEntity<ReplyMessageList> getByStatus(Boolean)
++ ResponseEntity<ReplyMessageSimple> update(SectorUpdateDTO)
++ ResponseEntity<ReplyMessageSimple> delete(Integer)
+}
+
+
+class org.jers.parameters.utils.Converter {
++ {static} String rewrite(Class)
+}
+
+class org.jers.parameters.model.entity.City {
+- Integer idCity
+- String cityName
+- State idState
+- String landlinePhoneIdentifier
+- Double minimumTemperature
+- Double maximumTemperature
+- Double heightAboveSeaLevel
+- List<CityToCity> cityToCityOrigins
+- List<CityToCity> cityToCityDestinations
+}
+
+class org.jers.parameters.config.ParametersConfiguration {
++ void addCorsMappings(CorsRegistry)
+}
+
+class org.jers.parameters.model.entity.Gender {
+- Integer idGender
+- String genderName
+}
+
+class org.jers.parameters.model.dto.country.CountryCreateDTO {
+- String countryName
+- String phoneIdentifier
+}
+
+class org.jers.parameters.model.dto.city.CityCreateDTO {
+- String cityName
+- Integer idState
+- String landlinePhoneIdentifier
+- Double minimumTemperature
+- Double maximumTemperature
+- Double heightAboveSeaLevel
+}
+
+class org.jers.parameters.exception.ApiExceptionHandler {
+- {static} Logger log
+- ReplyMessageSimple replyMessageSimple
++ ResponseEntity<ReplyMessageSimple> httpRequestMethodException(HttpRequestMethodNotSupportedException,WebRequest)
++ ResponseEntity<ReplyMessageSimple> validationFieldsException(MethodArgumentNotValidException,WebRequest)
++ ResponseEntity<ReplyMessageSimple> validationFieldsExceptionBySQL(HttpMessageNotReadableException,WebRequest)
++ ResponseEntity<ReplyMessageSimple> methodArgumentTypeMismatchException(MethodArgumentTypeMismatchException,WebRequest)
++ ResponseEntity<ReplyMessageSimple> handlerMethodValidationException(HandlerMethodValidationException,WebRequest)
+- String supportedMethods(HttpRequestMethodNotSupportedException)
+}
+
+
+class org.jers.parameters.model.dto.citytocity.CityToCityCreateDTO {
+- String genderName
+- Integer idOriginCity
+- Integer idDestinationCity
+- Double distance
+- int routeNumbers
+}
+
+class org.jers.parameters.model.dto.state.StateOutputDTO {
+- Integer idState
+- String stateName
+- String landlinePhoneIdentifier
+- Integer idCountry
+}
+
+class org.jers.parameters.model.dto.gender.GenderUpdateDTO {
+- Integer idGender
+}
+
+class org.jers.parameters.service.SectorService {
+- ISectorRepository repository
+- ReplyMessageSimple<SectorOutputDTO> replyMessageSimple
+- ReplyMessageList<SectorOutputDTO> replyMessageList
+- IMapper<SectorCreateDTO,SectorUpdateDTO,SectorOutputDTO,Sector> mapper
++ ReplyMessageSimple<SectorOutputDTO> getCreate(SectorCreateDTO)
++ ReplyMessageList<SectorOutputDTO> getFindAll()
++ ReplyMessageList<SectorOutputDTO> getFindAllByStatus(Boolean)
++ ReplyMessageSimple<SectorOutputDTO> getFindById(Integer)
++ ReplyMessageSimple<SectorOutputDTO> getUpdate(SectorUpdateDTO)
++ ReplyMessageSimple<SectorOutputDTO> getDelete(Integer)
++ String getUri(String)
++ String getUri(String,Integer)
+}
+
+
+class org.jers.parameters.model.dto.city.CityOutputDTO {
+- Integer idGender
+- String cityName
+- Integer idState
+- String landlinePhoneIdentifier
+- Double minimumTemperature
+- Double maximumTemperature
+- Double heightAboveSeaLevel
+}
+
+class org.jers.parameters.utils.response.ReplyMessageList {
+- List<BO> response
+}
+
+class org.jers.parameters.service.DocumentTypeService {
+- IDocumentTypeRepository repository
+- ReplyMessageSimple<DocumentTypeOutputDTO> replyMessageSimple
+- ReplyMessageList<DocumentTypeOutputDTO> replyMessageList
+- IMapper<DocumentTypeCreateDTO,DocumentTypeUpdateDTO,DocumentTypeOutputDTO,DocumentType> mapper
++ ReplyMessageSimple<DocumentTypeOutputDTO> getCreate(DocumentTypeCreateDTO)
++ ReplyMessageList<DocumentTypeOutputDTO> getFindAll()
++ ReplyMessageList<DocumentTypeOutputDTO> getFindAllByAcronym()
++ ReplyMessageList<DocumentTypeOutputDTO> getFindAllByStatus(Boolean)
++ ReplyMessageList<DocumentTypeOutputDTO> getFindAllByStatusAcronym(Boolean)
++ ReplyMessageSimple<DocumentTypeOutputDTO> getFindById(Integer)
++ ReplyMessageSimple<DocumentTypeOutputDTO> getUpdate(DocumentTypeUpdateDTO)
++ ReplyMessageSimple<DocumentTypeOutputDTO> getDelete(Integer)
++ String getUri(String)
++ String getUri(String,Integer)
+}
+
+
+
+org.jers.parameters.service.IBaseService <|.. org.jers.parameters.service.CivilStatusService
+org.jers.parameters.model.repository.IBaseRepository <|-- org.jers.parameters.model.repository.IGenderRepository
+org.jers.parameters.utils.response.ReplyMessage <|-- org.jers.parameters.utils.response.ReplyMessageSimple
+org.jers.parameters.utils.mappers.IMapper <|.. org.jers.parameters.utils.mappers.TelephoneTypeMapper
+org.jers.parameters.utils.mappers.IMapper <|.. org.jers.parameters.utils.mappers.GenderMapper
+org.jers.parameters.model.dto.BaseEntityInputDTO <|-- org.jers.parameters.model.dto.gender.GenderCreateDTO
+org.jers.parameters.model.repository.IBaseRepository <|-- org.jers.parameters.model.repository.ISectorRepository
+org.jers.parameters.model.dto.documenttype.DocumentTypeCreateDTO <|-- org.jers.parameters.model.dto.documenttype.DocumentTypeUpdateDTO
+org.jers.parameters.utils.mappers.IMapper <|.. org.jers.parameters.utils.mappers.DocumentTypeMapper
+org.jers.parameters.model.entity.BaseEntity <|-- org.jers.parameters.model.entity.Country
+org.jers.parameters.model.dto.BaseEntityInputDTO <|-- org.jers.parameters.model.dto.civilstatus.CivilStatusCreateDTO
+org.jers.parameters.model.dto.BaseEntityInputDTO <|-- org.jers.parameters.model.dto.sector.SectorCreateDTO
+org.springframework.data.jpa.repository.JpaRepository <|-- org.jers.parameters.model.repository.IBaseRepository
+org.jers.parameters.model.dto.BaseEntityOutputDTO <|-- org.jers.parameters.model.dto.civilstatus.CivilStatusOutputDTO
+org.jers.parameters.model.dto.BaseEntityInputDTO <|-- org.jers.parameters.model.dto.BaseEntityOutputDTO
+org.jers.parameters.model.entity.BaseEntity <|-- org.jers.parameters.model.entity.CityToCity
+org.jers.parameters.model.dto.BaseEntityOutputDTO <|-- org.jers.parameters.model.dto.sector.SectorOutputDTO
+org.jers.parameters.model.repository.IBaseRepository <|-- org.jers.parameters.model.repository.IDocumentTypeRepository
+org.jers.parameters.model.dto.BaseEntityInputDTO <|-- org.jers.parameters.model.dto.telephonetype.TelephoneTypeCreateDTO
+org.jers.parameters.model.entity.BaseEntity <|-- org.jers.parameters.model.entity.TelephoneType
+org.jers.parameters.model.dto.BaseEntityInputDTO <|-- org.jers.parameters.model.dto.documenttype.DocumentTypeCreateDTO
+org.jers.parameters.model.entity.BaseEntity <|-- org.jers.parameters.model.entity.State
+org.jers.parameters.model.entity.BaseEntity <|-- org.jers.parameters.model.entity.DocumentType
+org.jers.parameters.controller.IBaseController <|-- org.jers.parameters.controller.IDocumentTypeController
+org.jers.parameters.model.dto.country.CountryCreateDTO <|-- org.jers.parameters.model.dto.country.CountryUpdateDTO
+org.jers.parameters.controller.IDocumentTypeController <|.. org.jers.parameters.controller.DocumentTypeController
+org.jers.parameters.model.dto.BaseEntityOutputDTO <|-- org.jers.parameters.model.dto.documenttype.DocumentTypeOutputDTO
+org.jers.parameters.model.entity.BaseEntity <|-- org.jers.parameters.model.entity.Sector
+org.jers.parameters.model.entity.BaseEntity <|-- org.jers.parameters.model.entity.CivilStatus
+org.jers.parameters.service.IBaseService <|.. org.jers.parameters.service.TelephoneTypeService
+org.jers.parameters.model.repository.IBaseRepository <|-- org.jers.parameters.model.repository.ITelephoneTypeRepository
+org.jers.parameters.model.dto.state.StateCreateDTO <|-- org.jers.parameters.model.dto.state.StateUpdateDTO
+org.jers.parameters.controller.IBaseController <|.. org.jers.parameters.controller.GenderController
+org.jers.parameters.model.dto.telephonetype.TelephoneTypeCreateDTO <|-- org.jers.parameters.model.dto.telephonetype.TelephoneTypeUpdateDTO
+org.jers.parameters.model.dto.BaseEntityOutputDTO <|-- org.jers.parameters.model.dto.telephonetype.TelephoneTypeOutputDTO
+org.jers.parameters.model.dto.sector.SectorCreateDTO <|-- org.jers.parameters.model.dto.sector.SectorUpdateDTO
+org.jers.parameters.model.dto.civilstatus.CivilStatusCreateDTO <|-- org.jers.parameters.model.dto.civilstatus.CivilStatusUpdateDTO
+org.jers.parameters.controller.IBaseController <|.. org.jers.parameters.controller.TelephoneTypeController
+org.jers.parameters.service.IBaseService <|-- org.jers.parameters.service.IDocumentTypeService
+org.jers.parameters.controller.IBaseController <|.. org.jers.parameters.controller.CivilStatusController
+org.jers.parameters.model.dto.city.CityCreateDTO <|-- org.jers.parameters.model.dto.city.CityUpdateDTO
+org.jers.parameters.service.IBaseService <|.. org.jers.parameters.service.GenderService
+org.jers.parameters.model.dto.BaseEntityOutputDTO <|-- org.jers.parameters.model.dto.country.CountryOutputDTO
+org.jers.parameters.model.dto.citytocity.CityToCityCreateDTO <|-- org.jers.parameters.model.dto.citytocity.CityToCityUpdateDTO
+java.io.Serializable <|.. org.jers.parameters.model.entity.BaseEntity
+org.jers.parameters.utils.mappers.IMapper <|.. org.jers.parameters.utils.mappers.SectorMapper
+org.jers.parameters.model.repository.IBaseRepository <|-- org.jers.parameters.model.repository.ICivilStatusRepository
+org.jers.parameters.model.dto.BaseEntityOutputDTO <|-- org.jers.parameters.model.dto.gender.GenderOutputDTO
+org.jers.parameters.utils.mappers.IMapper <|.. org.jers.parameters.utils.mappers.CivilStatusMapper
+org.jers.parameters.controller.IBaseController <|.. org.jers.parameters.controller.SectorController
+org.jers.parameters.model.entity.BaseEntity <|-- org.jers.parameters.model.entity.City
+org.springframework.web.servlet.config.annotation.WebMvcConfigurer <|.. org.jers.parameters.config.ParametersConfiguration
+org.jers.parameters.model.entity.BaseEntity <|-- org.jers.parameters.model.entity.Gender
+org.jers.parameters.model.dto.BaseEntityInputDTO <|-- org.jers.parameters.model.dto.country.CountryCreateDTO
+org.jers.parameters.model.dto.BaseEntityInputDTO <|-- org.jers.parameters.model.dto.city.CityCreateDTO
+org.jers.parameters.model.dto.BaseEntityInputDTO <|-- org.jers.parameters.model.dto.citytocity.CityToCityCreateDTO
+org.jers.parameters.model.dto.BaseEntityOutputDTO <|-- org.jers.parameters.model.dto.state.StateOutputDTO
+org.jers.parameters.model.dto.gender.GenderCreateDTO <|-- org.jers.parameters.model.dto.gender.GenderUpdateDTO
+org.jers.parameters.service.IBaseService <|.. org.jers.parameters.service.SectorService
+org.jers.parameters.model.dto.BaseEntityOutputDTO <|-- org.jers.parameters.model.dto.city.CityOutputDTO
+org.jers.parameters.utils.response.ReplyMessage <|-- org.jers.parameters.utils.response.ReplyMessageList
+org.jers.parameters.service.IDocumentTypeService <|.. org.jers.parameters.service.DocumentTypeService
+org.jers.parameters.model.dto.BaseEntityOutputDTO <|-- org.jers.parameters.model.dto.citytocity.CityToCityOutputDTO
+org.jers.parameters.model.dto.BaseEntityInputDTO <|-- org.jers.parameters.model.dto.state.StateCreateDTO
+org.jers.parameters.controller.CivilStatusController <<- org.jers.parameters.annotation.RestApi : <<use>>
+@enduml

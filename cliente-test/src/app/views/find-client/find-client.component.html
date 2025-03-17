@@ -1,0 +1,30 @@
+<div class="container mt-5">
+    <div class="card shadow-sm p-4">
+        <h5 class="text-muted mb-4">Todos los campos son obligatorios</h5>
+
+        <form [formGroup]="form" (ngSubmit)="buscarCliente()" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label for="tipoDocumento" class="form-label">Tipo de documento</label>
+                <select id="tipoDocumento" formControlName="tipoDocumento" class="form-select" required>
+                    <option value="" disabled selected>Seleccione un tipo</option>
+                    <option value="C">Cédula de ciudadanía</option>
+                    <option value="P">Pasaporte</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="numeroDocumento" class="form-label">Número de documento</label>
+                <input type="text" id="numeroDocumento" formControlName="numeroDocumento" class="form-control"
+                    placeholder="123.456.789" (input)="formatNumber($event)" (keypress)="allowOnlyNumbers($event)"
+                    minlength="10" maxlength="13" required />
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-modify btn-lg w-100" [disabled]="!form.valid">
+                Buscar
+            </button>
+        </form>
+    </div>
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3" role="alert">
+        {{ errorMessage }}
+    </div>
+</div>

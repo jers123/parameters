@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>
+    @if (data.type == typeInfo) {
+        @if (data.notificationAction == actionEdit) {
+            Edit
+        } @else if (data.notificationAction == actionDelete) {
+            Delete
+        } @else if (data.notificationAction == actionNothing) {
+            Information
+        }
+    } @else if (data.type == typeError) {
+        Error
+    }
+</h2>
+<mat-dialog-content>
+    @for (message of data.messages; track data.messages) {
+        <p>{{ message }}</p>
+    }
+</mat-dialog-content>
+<mat-dialog-actions>
+    @if (data.type == typeInfo) {
+        @if (data.notificationAction == actionDelete) {
+            <button mat-button (click)="onNoClick(true)">Delete</button>
+            <button mat-button cdkFocusInitial (click)="onNoClick(false)">Cancel</button>
+        } @else if (data.notificationAction == actionEdit) {
+            <button mat-button cdkFocusInitial (click)="onNoClick(true)">Edit</button>
+            <button mat-button (click)="onNoClick(false)">Cancel</button>
+        } @else if (data.notificationAction == actionNothing) {
+            <button mat-button cdkFocusInitial (click)="onNoClick(false)">Accept</button>
+        }
+    } @else if (data.type == typeError) {
+        <button mat-button cdkFocusInitial (click)="onNoClick(false)">Accept</button>
+    }
+</mat-dialog-actions>

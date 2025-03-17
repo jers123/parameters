@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Create gender</h2>
+<mat-dialog-content>
+    <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Gender name" [(ngModel)]="genderCreate.genderName">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <mat-select [value]="genderCreate.status" [(ngModel)]="genderCreate.status">
+            <mat-option value="true">True</mat-option>
+            <mat-option value="false">False</mat-option>
+        </mat-select>
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button cdkFocusInitial (click)="create()">Create</button>
+    <button mat-button (click)="onClose(false)">Cancel</button>
+</mat-dialog-actions>

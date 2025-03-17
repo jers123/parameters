@@ -1,0 +1,77 @@
+#notification {
+    display: block;
+    position: fixed;
+    /*flex-direction: column;
+    flex-grow: 0;
+    flex-shrink: 0;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border: 1px solid #f4f4f4;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    text-align: center;
+    overflow-y: auto;
+    pointer-events: auto;
+    box-shadow: 0 3px 1px -2px #0003, 0 2px 2px #00000024, 0 1px 5px #0000001f;*/
+
+    padding: 20px;
+    border: 1px solid #f4f4f4;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0s, opacity 0.3s ease-in-out;
+    z-index: 1000;
+    align-items: center !important;
+    font-weight: bold;
+    max-width: calc(100vw - 100px);
+}
+
+.info {
+    color: black;
+}
+
+.error {
+    color: red;
+}
+
+.ok {
+    color: #2ecc71;
+}
+
+#img-notifications {
+    align-items: center !important;
+}
+
+#imgNotification {
+    width: 50px;
+    height: 50px;
+}
+
+#textNotifications {
+    align-items: center !important;
+    margin-bottom: 16px;
+}
+
+#buttonNotifications {
+    align-items: center !important;
+    justify-content: center;
+}
+
+.btn-notification {
+    margin-left: 10px !important;
+    cursor: pointer;
+}
+
+.ok-btn-notification {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.error-btn-notification {
+    background-color: red;
+    color: white;
+}

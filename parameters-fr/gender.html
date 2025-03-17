@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genders</title>
+    <link rel="stylesheet" href="css/notification.css">
+    <link rel="stylesheet" href="css/component.css">
+    <script src="js/notification.js" type="text/javascript"></script>
+    <script src="js/apis.js" type="text/javascript"></script>
+    <script src="js/gender.js" type="text/javascript"></script>
+    <script src="js/system.js" type="text/javascript"></script>
+    <link rel="icon" href="res/ing/parameters.ico" type="image/x-icon">
+</head>
+
+<body>
+    <dialog id="updateEntity">
+        <div class="title-update">
+            <h4>Update gender</h4>
+        </div>
+        <br>
+        <div class="section-update">
+            <div>
+                <label class="label-update">Gender id</label>
+                <input class="input-update" id="genderIdUpdate" type="number" placeholder="Gender id" maxlength="10" disabled="true">
+            </div>
+            <div>
+                <label class="label-update">Gender name</label>
+                <input class="input-update" id="genderNameUpdate" type="text" placeholder="Gender name" maxlength="20">
+            </div>
+            <div>
+                <label class="label-update">Gender status</label>
+                <select class="select-update" id="genderStatusUpdate">
+                    <div class="select-options">
+                        <option class="select-option" value="none">Select option...</option>
+                        <option class="select-option" value="true">True</option>
+                        <option class="select-option" value="false">False</option>
+                    </div>
+                </select>
+            </div>
+        </div>
+        <div class="section-update">
+            <div>
+                <label class="label-update">Gender creation date</label>
+                <input class="input-update" id="genderCreationDateUpdate" type="datetime-local" disabled="true">
+            </div>
+            <div>
+                <label class="label-update">Gender update date</label>
+                <input class="input-update" id="genderUpdateDateUpdate" type="datetime-local" disabled="true">
+            </div>
+        </div>
+        <div id="btnNotifications">
+            <button id="saveButton" class="" onclick="questionUpdate()">Update gender</button>
+            <br><br>
+            <button id="cancelUpdateBtn" class="btn-notification error-btn-notification"
+                onclick="hiddenUpdateEntity()">Cancel</button>
+        </div>
+    </dialog>
+
+    <dialog id="notification">
+        <div id="imgNotifications">
+            <img id="imgNotification" src="res/ing/error.png" alt="">
+        </div id="textNotifications">
+        <div id="txtNotifications"></div>
+        <div id="buttonNotifications">
+        </div>
+    </dialog>
+
+    <section id="app">
+        <h1>Genders</h1>
+        <section class="add-entity">
+            <input class="input" id="genderName" type="text" placeholder="Gender name" maxlength="20">
+            <select class="select" id="genderStatus" aria-label="Gender status">
+                <div class="select-options">
+                    <option class="select-option" value="none">Select option...</option>
+                    <option class="select-option" value="true">True</option>
+                    <option class="select-option" value="false">False</option>
+                </div>
+            </select>
+            <button id="createButton" class="create-simple" onclick="createData()">Create gender</button>
+        </section>
+        <section class="info-container">
+            <table aria-label="Info about genders">
+                <thead>
+                    <tr>
+                        <th class="table-field">Id</th>
+                        <th class="table-field">Name</th>
+                        <th class="table-field">Status</th>
+                        <th class="table-field">Creation date</th>
+                        <th class="table-field">Update date</th>
+                        <th class="table-field">Edit</th>
+                        <th class="table-field">Delete</th>
+                    </tr>
+                </thead>
+                <tbody id="tableB">
+                </tbody>
+            </table>
+        </section>
+    </section>
+</body>
+
+</html>

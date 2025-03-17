@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>Crear nuevo empleado</h2>
+<mat-dialog-content>
+    <mat-form-field appearance="outline">
+        <mat-label>Cedula</mat-label>
+        <input matInput type="number" placeholder="Cedula del empleado" [(ngModel)]="employee.cedula">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput type="text" placeholder="Nombre del empleado" [(ngModel)]="employee.nombre">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Fecha de ingreso</mat-label>
+        <input matInput [matDatepicker]="picker" placeholder="Fecha de ingreso"
+            [(ngModel)]="employee.fechaIngreso">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Cargo</mat-label>
+        <mat-select matInput placeholder="Seleccione cargo" [(value)]="employee.idCargo" [(ngModel)]="employee.idCargo">
+            @for (positionTemp of positions; track positionTemp.idCargo) {
+                <mat-option value="{{positionTemp.idCargo}}">{{ positionTemp.nombre }}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+    <div>
+        <mat-label>Foto </mat-label>
+        <input type="file" accept="image/*" placeholder="Foto del empleado" (change)="onFileSelected($event)">
+        @if(file === null) {
+            <mat-error>Por favor, seleccione un archivo.</mat-error>
+        }
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button cdkFocusInitial (click)="openDialogCreate()">Crear</button>
+    <button mat-button (click)="onClose(false)">Cancelar</button>
+</mat-dialog-actions>

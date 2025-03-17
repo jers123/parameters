@@ -1,0 +1,60 @@
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h2 class="text-center">Información del Cliente</h2>
+        </div>
+        <div class="card-body">
+            <div *ngIf="cliente; else noData">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <strong>Primer Nombre: </strong>
+                        <span>{{ cliente.primerNombre }}</span>
+                    </div>
+                    <div class="col-md-6">
+                        <strong>Segundo Nombre: </strong>
+                        <span>{{ cliente.segundoNombre }}</span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <strong>Primer Apellido: </strong>
+                        <span>{{ cliente.primerApellido }}</span>
+                    </div>
+                    <div class="col-md-6">
+                        <strong>Segundo Apellido: </strong>
+                        <span>{{ cliente.segundoApellido }}</span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <strong>Teléfono: </strong>
+                        <span>{{ cliente.telefono }}</span>
+                    </div>
+                    <div class="col-md-6">
+                        <strong>Dirección: </strong>
+                        <span>{{ cliente.direccion }}</span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <strong>Ciudad de Residencia: </strong>
+                        <span>{{ cliente.ciudadResidencia }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <ng-template #noData>
+                <div class="alert alert-warning text-center">
+                    No se encontró información del cliente.
+                </div>
+            </ng-template>
+
+            <div class="text-center mt-4">
+                <button class="btn btn-secondary" (click)="volver()">Volver</button>
+            </div>
+        </div>
+    </div>
+</div>
