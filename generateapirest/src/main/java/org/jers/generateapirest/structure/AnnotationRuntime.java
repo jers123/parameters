@@ -6,16 +6,16 @@ import org.jers.generateapirest.structure.enums.PlantUML;
 import org.jers.generateapirest.structure.enums.TypeClass;
 
 public class AnnotationRuntime {
-    private PlantUML plantUML;
-    private String packageName;
-    private List<String> imports;
-    private List<String> importStatics;
-    
-    private Access access;
-    
-    private TypeClass typeClass;
-    private ClassRuntime superclass;
-    private List<ClassRuntime> implementClasses;
-    
-    private List<FieldRuntime> fields;
+	private PlantUML plantUML;
+	private String packageName;
+	private List<String> imports;
+	private List<String> importStatics;
+
+	private Access access;
+
+	private TypeClass typeClass;
+	private ClassRuntime superclass;
+	private List<ClassRuntime> implementClasses;
+
+	private List<FieldRuntime> fields;
 }
